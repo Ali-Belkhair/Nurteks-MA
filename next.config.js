@@ -22,5 +22,4 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
 };
-
 module.exports = nextConfig;
