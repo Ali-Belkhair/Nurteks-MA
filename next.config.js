@@ -21,5 +21,9 @@ const nextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  // Add these lines:
+  trailingSlash: false,
+  output: 'standalone', // or 'export' if you're doing static export
 };
+
 module.exports = nextConfig;
