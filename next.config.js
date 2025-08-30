@@ -9,7 +9,8 @@ const nextConfig = {
     domains: ['images.pexels.com', 'nurteks.com.tr']
   },
   experimental: {
-    optimizeCss: true,
+    // Remove or set to false
+    optimizeCss: false,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
