@@ -183,7 +183,7 @@ export const products: Product[] = [
     category: 'sports',
     description: 'Turf designed for sports training facilities.',
     features: ['Durable', 'Versatile', 'Cost effective', 'All-weather'],
-    image: 'https://nurteks.com.tr/wp-content/uploads/2019/02/antrenman-saha-cimi-350x350.jpg',
+    image: 'https://nurteks.com.tr/wp-content/uploads/2021/11/07_20mm_Eko_Bahar_02.jpg',
     price: 'From 230 MAD/m²'
   },
   {
@@ -203,7 +203,7 @@ export const products: Product[] = [
     category: 'decorative',
     description: 'Beautiful artificial grass for decorative purposes in homes and offices.',
     features: ['Aesthetic appeal', 'Realistic look', 'UV resistant', 'Easy maintenance'],
-    image: 'https://nurteks.com.tr/wp-content/uploads/2019/02/dekoratif-cim-350x350.jpg',
+    image: 'https://nurteks.com.tr/wp-content/uploads/2021/11/07_20mm_Eko_Bahar_02.jpg',
     price: 'From 180 MAD/m²'
   },
   {
@@ -212,7 +212,7 @@ export const products: Product[] = [
     category: 'decorative',
     description: 'Lightweight decorative grass for balconies and terraces.',
     features: ['Lightweight', 'Easy installation', 'UV protected', 'Drainage system'],
-    image: 'https://nurteks.com.tr/wp-content/uploads/2019/02/balkon-dekoratif-cim-350x350.jpg',
+    image: 'https://nurteks.com.tr/wp-content/uploads/2021/11/07_20mm_Eko_Bahar_02.jpg',
     price: 'From 160 MAD/m²'
   },
   {
@@ -221,7 +221,7 @@ export const products: Product[] = [
     category: 'decorative',
     description: 'Artificial grass for interior design and decorative applications.',
     features: ['Aesthetic appeal', 'Color fast', 'Soft texture', 'Easy to clean'],
-    image: 'https://nurteks.com.tr/wp-content/uploads/2019/02/ic-mekan-dekoratif-cim-350x350.jpg',
+    image: 'https://nurteks.com.tr/wp-content/uploads/2021/11/07_20mm_Eko_Bahar_02.jpg',
     price: 'From 190 MAD/m²',
     popular: true
   },
