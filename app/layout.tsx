@@ -1,9 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
-import { Navigation } from '@/components/layout/Navigation';
+import dynamic from 'next/dynamic';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
+
+// Dynamically import the Navigation component with loading fallback
+const Navigation = dynamic(() => import('@/components/layout/Navigation').then(mod => ({ default: mod.Navigation })), {
+  loading: () => <div className="h-16 lg:h-20"></div>,
+  ssr: true
+});
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -159,8 +165,13 @@ export default function RootLayout({
             })
           }}
         />
+        {/* Viewport meta tag */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={`${inter.className} antialiased bg-white text-gray-900`}>
+      <body 
+        className={`${inter.className} antialiased bg-white text-gray-900`}
+        suppressHydrationWarning
+      >
         <Navigation />
         <main className="min-h-screen">
           {children}

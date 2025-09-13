@@ -15,15 +15,31 @@ const nextConfig = {
         hostname: 'nurteks.com.tr',
       },
     ],
+    qualities: [75, 85, 90],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   poweredByHeader: false,
   compress: true,
-  // Add these lines:
   trailingSlash: false,
-  output: 'standalone', // or 'export' if you're doing static export
+  output: 'standalone',
+  
+  // Add headers configuration
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Permissions-Policy',
+            // Only include recognized features
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

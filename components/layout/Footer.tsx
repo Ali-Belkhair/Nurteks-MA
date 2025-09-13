@@ -4,8 +4,8 @@ import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -14,7 +14,7 @@ export function Footer() {
               </div>
               <span className="text-2xl font-bold">Nurteks</span>
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               Transforming Morocco's landscapes with premium artificial grass solutions for homes, sports facilities, and urban spaces.
             </p>
             <div className="flex space-x-4">
@@ -46,10 +46,10 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Products</h3>
             <ul className="space-y-2">
-              <li><span className="text-gray-300">Residential Grass</span></li>
-              <li><span className="text-gray-300">Sports Fields</span></li>
-              <li><span className="text-gray-300">Commercial Spaces</span></li>
-              <li><span className="text-gray-300">Landscaping</span></li>
+              <li><Link href="/products?category=residential" className="text-gray-300 hover:text-primary transition-colors">Residential Grass</Link></li>
+              <li><Link href="/products?category=sports" className="text-gray-300 hover:text-primary transition-colors">Sports Fields</Link></li>
+              <li><Link href="/products?category=commercial" className="text-gray-300 hover:text-primary transition-colors">Commercial Spaces</Link></li>
+              <li><Link href="/products?category=landscaping" className="text-gray-300 hover:text-primary transition-colors">Landscaping</Link></li>
               <li><span className="text-gray-300">Accessories</span></li>
             </ul>
           </div>
@@ -74,8 +74,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-400">
+        <div className="border-t border-gray-800 mt-8 md:mt-12 pt-6 md:pt-8 text-center">
+          <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} Nurteks. All rights reserved.
           </p>
         </div>

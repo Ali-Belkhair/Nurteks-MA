@@ -12,15 +12,16 @@ import { cn } from '@/lib/utils';
 const navigationItems = [
   { href: '/', label: 'Accueil', labelEn: 'Home' },
   { href: '/about', label: 'À Propos', labelEn: 'About' },
+  // In Navigation.tsx - Product submenu
   { 
     href: '/products', 
     label: 'Produits', 
     labelEn: 'Products',
     submenu: [
-      { href: '/products/residential', label: 'Résidentiel', labelEn: 'Residential' },
-      { href: '/products/sports', label: 'Terrains de Sport', labelEn: 'Sports Fields' },
-      { href: '/products/commercial', label: 'Commercial', labelEn: 'Commercial' },
-      { href: '/products/landscaping', label: 'Aménagement', labelEn: 'Landscaping' },
+      { href: '/products?category=residential', label: 'Résidentiel', labelEn: 'Residential' },
+      { href: '/products?category=sports', label: 'Terrains de Sport', labelEn: 'Sports Fields' },
+      { href: '/products?category=commercial', label: 'Commercial', labelEn: 'Commercial' },
+      { href: '/products?category=landscaping', label: 'Aménagement', labelEn: 'Landscaping' },
     ]
   },
   { href: '/projects', label: 'Projets', labelEn: 'Projects' },
@@ -28,7 +29,11 @@ const navigationItems = [
   { href: '/contact', label: 'Contact', labelEn: 'Contact' },
 ];
 
-export function Navigation() {
+// Change from:
+// export function Navigation() {
+
+// To:
+export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
@@ -53,13 +58,19 @@ export function Navigation() {
     return pathname.startsWith(href);
   };
 
+  // Enhanced mobile menu handling
+  const toggleMobileSubmenu = (href: string) => {
+    setActiveSubmenu(activeSubmenu === href ? null : href);
+  };
+
   return (
     <>
-      {/* Top Bar */}
+      {/* Top Bar - Enhanced for better mobile display */}
       <div className="bg-primary text-white py-2 text-sm no-print">
         <div className="max-w-7xl mx-auto container-padding">
+          // Top Bar - Enhanced for better mobile display
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div className="flex items-center space-x-6">
+            <div className="flex flex-col xs:flex-row items-center space-y-2 xs:space-y-0 xs:space-x-4 sm:space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
                 <span>+212 522-XXXXXX</span>
@@ -69,14 +80,14 @@ export function Navigation() {
                 <span>contact@nurteks.ma</span>
               </div>
             </div>
-            <div className="text-center sm:text-right">
+            <div className="text-center sm:text-right mt-2 sm:mt-0">
               <span>Livraison gratuite dans tout le Maroc</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
+      {/* Main Navigation - Enhanced for better responsiveness */}
       <motion.nav
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
@@ -197,7 +208,7 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Enhanced for better UX */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -205,30 +216,43 @@ export function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
+              className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[80vh] overflow-y-auto"
             >
               <div className="container-padding py-6 space-y-4">
                 {navigationItems.map((item) => (
-                  <div key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        'block text-base font-medium transition-colors py-2',
-                        isActive(item.href) 
-                          ? 'text-primary font-semibold' 
-                          : 'text-gray-700 hover:text-primary'
+                  <div key={item.href} className="border-b border-gray-100 pb-3">
+                    <div className="flex justify-between items-center">
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          'block text-base font-medium transition-colors py-2',
+                          isActive(item.href) 
+                            ? 'text-primary font-semibold' 
+                            : 'text-gray-700 hover:text-primary'
+                        )}
+                        onClick={() => !item.submenu && setIsOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                      {item.submenu && (
+                        <button 
+                          onClick={() => toggleMobileSubmenu(item.href)}
+                          className="p-2 text-gray-500 hover:text-primary"
+                        >
+                          <ChevronDown className={cn(
+                            "h-5 w-5 transition-transform",
+                            activeSubmenu === item.href && "rotate-180"
+                          )} />
+                        </button>
                       )}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                    {item.submenu && (
-                      <div className="ml-4 mt-2 space-y-2">
+                    </div>
+                    {item.submenu && activeSubmenu === item.href && (
+                      <div className="ml-4 mt-2 space-y-2 bg-gray-50 p-3 rounded-md">
                         {item.submenu.map((subItem) => (
                           <Link
                             key={subItem.href}
                             href={subItem.href}
-                            className="block text-sm text-gray-600 hover:text-primary transition-colors py-1"
+                            className="block text-sm text-gray-600 hover:text-primary transition-colors py-2 px-2 hover:bg-gray-100 rounded"
                             onClick={() => setIsOpen(false)}
                           >
                             {subItem.label}
@@ -254,3 +278,6 @@ export function Navigation() {
     </>
   );
 }
+
+// Add this line at the end of the file
+export default { Navigation };
